@@ -1,5 +1,7 @@
 .button {
     padding: 5px 24px 5px 24px;
+    border: 1px solid #0066CC;
+    border-radius: 3px;
 }
 
 .disabled {

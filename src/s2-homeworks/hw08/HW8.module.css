@@ -1,23 +1,48 @@
 .item {
-}
-
-.item:last-of-type {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    border-bottom: 1px solid black;
 }
 
 .users {
+    border-spacing: 0;
+    width: 606px;
+    height: 36px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .buttonsContainer {
+    display: flex;
+    margin: 35px 50px;
+    gap: 15px;
 }
 
 .container {
+    min-height: 400px;
 }
 
 .thead {
+    width: 606px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    background-color:#E5E5E5;
 }
 
 .nameCol {
+    padding: 12px 0 12px 83px;
 }
 
 .ageCol {
+    padding-right: 70px;
+
+}
+td {
+    border-bottom: 1px solid #E5E5E5;;
 }
