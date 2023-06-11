@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import Affairs from './affairs/Affairs'
 import s2 from '../../s1-main/App.module.css'
-import affair from "./affairs/affair/Affair";
 
 /*
 * 3 - дописать типы и логику функции filterAffairs и проверить её тестами
@@ -33,11 +32,11 @@ export const filterAffairs = (affairs: AffairType[], filter: string): AffairType
     if (filter === 'all') {
         return affairs
     } else {
-        return  affairs.filter((affair) => affair.priority === filter)
+        return affairs.filter((affair) => affair.priority === filter)
     }
 }
 export const deleteAffair = (affairs: AffairType[], _id: number): AffairType[] => { // need to fix any
-     return affairs.filter((affair) => affair._id !== _id)
+    return affairs.filter((affair) => affair._id !== _id)
 }
 
 function HW2() {
@@ -46,8 +45,7 @@ function HW2() {
 
     const filteredAffairs = filterAffairs(affairs, filter)
     const deleteAffairCallback = (id: number) => {
-        console.log('HW2', id);
-       let filteredAffairs =  deleteAffair(affairs, id)
+        let filteredAffairs = deleteAffair(affairs, id)
         setAffairs(filteredAffairs)
     }
 
