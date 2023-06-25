@@ -52,12 +52,12 @@ const HW13 = () => {
                 debugger
                 if (e.response.status === 400) {
                     setImage(error400)
-                    setCode(e.status)
+                    setCode(e.response.status)
                     setText(e.response.data.errorText)
                     setInfo(e.response.data.info)
                 } else if (e.response.status === 500) {
                     setImage(error500)
-                    setCode(e.status)
+                    setCode(e.response.status)
                     setText(e.response.data.errorText)
                     setInfo(e.response.data.info)
                 } else {
