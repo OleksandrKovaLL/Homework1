@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {Loader} from "../hw10/Loader";
 
 /*
 * 1 - дописать SuperPagination
@@ -30,7 +31,7 @@ type ParamsType = {
 const getTechs = (params: ParamsType) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
-            'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
+            'https://samurai.it-incubator.io/api/3.0/homework/test3',
             {params}
         )
         .catch((e) => {
@@ -51,36 +52,29 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if (res?.status === 200 && res) {
+                    console.log(res)
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                    setLoading(false)
+                }
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
-        // делает студент
-
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        const params = Object.fromEntries(searchParams)
+        setPage(newPage)
+        setCount(newCount)
+        sendQuery({...params, page: newPage, count: newCount})
+        setSearchParams(new URLSearchParams({ ...params, page: newPage.toString(), count: newCount.toString() }));
     }
 
     const onChangeSort = (newSort: string) => {
-        // делает студент
-
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        const params = Object.fromEntries(searchParams)
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
+        sendQuery({...params, sort: newSort})
+        setSearchParams(new URLSearchParams({ ...params, sort: newSort}));
     }
 
     useEffect(() => {
@@ -107,13 +101,14 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading && <Loader />}
 
                 <SuperPagination
                     page={page}
                     itemsCountForPage={count}
                     totalCount={totalCount}
                     onChange={onChangePagination}
+                    setCount={setCount}
                 />
 
                 <div className={s.rowHeader}>

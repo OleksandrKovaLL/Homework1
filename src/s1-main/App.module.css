@@ -7,10 +7,11 @@
 
 .hw {
     min-height: 280px;
+    margin-top: 20px;
 }
 
 .hwTitle {
-    margin: 131px 0 10px 0px;
+    margin: 131px 0 10px 0;
     font-size: 22px;
     line-height: 27px;
     font-weight: 600;

@@ -1,9 +1,11 @@
 import React from 'react'
+import ExpandLessTwoToneIcon from '@mui/icons-material/ExpandLessTwoTone';
+import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
+import UnfoldMoreTwoToneIcon from '@mui/icons-material/UnfoldMoreTwoTone';
 
-// добавить в проект иконки и импортировать
-const downIcon = '[\\/]'
-const upIcon = '[/\\]'
-const noneIcon = '[--]'
+const downIcon = <ExpandMoreTwoToneIcon style={{ fontSize: '15px' }} />
+const upIcon = <ExpandLessTwoToneIcon style={{ fontSize: '15px' }}/>
+const noneIcon = <UnfoldMoreTwoToneIcon style={{ fontSize: '15px' }}/>
 
 export type SuperSortPropsType = {
     id?: string
@@ -14,7 +16,13 @@ export type SuperSortPropsType = {
 
 export const pureChange = (sort: string, down: string, up: string) => {
     // пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
-    return up // исправить
+
+        if (!sort) {
+            return down
+        } else if(sort === down || sort === '1b') {
+            return up
+        }
+    return ''
 }
 
 const SuperSort: React.FC<SuperSortPropsType> = (
@@ -26,6 +34,8 @@ const SuperSort: React.FC<SuperSortPropsType> = (
     const down = '1' + value
 
     const onChangeCallback = () => {
+        console.log('onChangeCallback SuperSort')
+        debugger
         onChange(pureChange(sort, down, up))
     }
 
@@ -40,14 +50,10 @@ const SuperSort: React.FC<SuperSortPropsType> = (
             id={id + '-sort-' + value}
             onClick={onChangeCallback}
         >
-            {/*сделать иконку*/}
-            {/*<img*/}
-            {/*    id={id + '-icon-' + sort}*/}
-            {/*    src={icon}*/}
-            {/*/>*/}
+            {icon}
 
-            {icon} {/*а это убрать*/}
         </span>
+
     )
 }
 
